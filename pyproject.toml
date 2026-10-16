@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tapelog-mcp"
+version = "0.1.0"
+description = "Open-source MCP server: private AI trade-journal analysis of DAS Trader and Robinhood CSV exports (stats, behavioral leaks, period comparison). Educational, not investment advice."
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "TapeLog" }]
+requires-python = ">=3.10"
+dependencies = ["mcp>=1.2"]
+keywords = ["mcp", "trading-journal", "das-trader", "robinhood", "day-trading", "claude", "model-context-protocol"]
+
+[project.urls]
+Homepage = "https://tapelog-journal.github.io/tapelog/ai-coach/"
+Repository = "https://github.com/tapelog-journal/tapelog-mcp"
+
+[project.scripts]
+tapelog-mcp = "tapelog_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tapelog_mcp"]
