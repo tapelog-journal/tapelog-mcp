@@ -1,8 +1,22 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.tapelog-journal/tapelog-mcp",
-  "description": "Private AI trade-journal analysis of DAS Trader and Robinhood CSV exports. Educational; not investment advice.",
+  "title": "TapeLog AI trade-journal coach",
+  "description": "Private trade-journal coach for your own DAS Trader and Robinhood CSVs. Not investment advice.",
   "repository": {"url": "https://github.com/tapelog-journal/tapelog-mcp", "source": "github"},
+  "websiteUrl": "https://tapelog-journal.github.io/tapelog/ai-coach/",
   "version": "0.1.0",
-  "packages": [{"registryType": "pypi", "identifier": "tapelog-mcp", "version": "0.1.0", "transport": {"type": "stdio"}}]
+  "packages": [
+    {
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "tapelog-mcp",
+      "version": "0.1.0",
+      "runtimeHint": "uvx",
+      "transport": {"type": "stdio"},
+      "environmentVariables": [
+        {"name": "TAPELOG_DATA", "description": "Optional path for the local fills store (default ~/.tapelog/fills.json)", "isRequired": false, "format": "filepath"}
+      ]
+    }
+  ]
 }

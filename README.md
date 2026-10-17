@@ -55,11 +55,11 @@ Optional: set the env var `TAPELOG_DATA=/path/to/fills.json` to change where fil
 
 > "Give me my weekly habit report."
 
-See a [sample weekly habit report](samples/SAMPLE_weekly_habit_report.md) (synthetic sample data), also on the [TapeLog site](https://tapelog-journal.github.io/tapelog/habit-report/).
+See a [sample weekly habit report](https://github.com/tapelog-journal/tapelog-mcp/blob/main/samples/SAMPLE_weekly_habit_report.md) (synthetic sample data), also on the [TapeLog site](https://tapelog-journal.github.io/tapelog/habit-report/).
 
 **Exporting your trades:** in DAS Trader, open the Trades window, right-click and choose Export. DAS files have no date, so pass `trade_date`. In Robinhood, go to Account, then Reports and statements, then Account activity report (CSV). Step-by-step guides are on the [TapeLog site](https://tapelog-journal.github.io/tapelog/guides/).
 
-**No MCP?** The [`/coach`](coach/) folder has a ready-to-paste Custom GPT or Claude Project instruction pack and a one-shot prompt that works on an uploaded CSV.
+**No MCP?** The [`/coach`](https://github.com/tapelog-journal/tapelog-mcp/tree/main/coach) folder has a ready-to-paste Custom GPT or Claude Project instruction pack and a one-shot prompt that works on an uploaded CSV.
 
 ## Scope rules (enforced in the server instructions and coach prompts)
 

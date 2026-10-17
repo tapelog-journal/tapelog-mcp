@@ -5,20 +5,41 @@ build-backend = "hatchling.build"
 [project]
 name = "tapelog-mcp"
 version = "0.1.0"
-description = "Open-source MCP server: private AI trade-journal analysis of DAS Trader and Robinhood CSV exports (stats, behavioral leaks, period comparison). Educational, not investment advice."
+description = "Open-source MCP server: private AI trade-journal coach for your own DAS Trader and Robinhood CSV exports (stats, behavioral patterns, weekly habit report). Educational, not investment advice."
 readme = "README.md"
 license = "MIT"
-authors = [{ name = "TapeLog" }]
+license-files = ["LICENSE"]
+authors = [{ name = "TapeLog", email = "tapelog@mail.grokbot.com" }]
+maintainers = [{ name = "TapeLog", email = "tapelog@mail.grokbot.com" }]
 requires-python = ">=3.10"
 dependencies = ["mcp>=1.2"]
-keywords = ["mcp", "trading-journal", "das-trader", "robinhood", "day-trading", "claude", "model-context-protocol"]
+keywords = ["mcp", "trading-journal", "das-trader", "robinhood", "day-trading", "claude", "model-context-protocol", "trade-journal", "mcp-server"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: End Users/Desktop",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Office/Business :: Financial :: Investment",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
 
 [project.urls]
 Homepage = "https://tapelog-journal.github.io/tapelog/ai-coach/"
 Repository = "https://github.com/tapelog-journal/tapelog-mcp"
+Issues = "https://github.com/tapelog-journal/tapelog-mcp/issues"
+Documentation = "https://github.com/tapelog-journal/tapelog-mcp#readme"
+Newsletter = "https://thetapelog.beehiiv.com/subscribe"
 
 [project.scripts]
 tapelog-mcp = "tapelog_mcp.server:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/tapelog_mcp"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/", "tests/", "samples/", "coach/", "README.md", "LICENSE", "server.json"]
