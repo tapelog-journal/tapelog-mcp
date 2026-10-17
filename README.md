@@ -18,6 +18,7 @@ An open-source [Model Context Protocol](https://modelcontextprotocol.io) server 
 | `get_stats` | Net P&L, win rate, profit factor, expectancy, average win and loss, payoff ratio, max drawdown, losing streak, hold time, and PDT day-trade count over the last 5 business days |
 | `find_leaks` | Descriptive breakdowns of your weakest groups, for example *"Your 18 trades entered 11:00-12:00 netted -$2,039 (win rate 11%)"* or *"After a loss your position was 2.1x larger"* |
 | `compare_periods` | Period A vs period B, such as last week vs this week |
+| `weekly_habit_report` | This week vs your prior weeks: which habits appeared and which faded, with counts (size-up after a loss, losers held longer than winners, overtrading bursts, a time-of-day slump). For example *"Size-up after a loss: this showed up 8 times this week vs 0 per week before."* Returns JSON plus a rendered markdown report. |
 | `list_trades` | Your reconstructed round trips |
 | `clear_data` | Deletes all stored fills (requires `confirm=true`) |
 
@@ -51,6 +52,10 @@ Optional: set the env var `TAPELOG_DATA=/path/to/fills.json` to change where fil
 > "Import ~/Downloads/trades.csv with trade_date 2026-10-15, then show my stats and find my leaks."
 
 > "Compare Sept 1-15 to Sept 16-30."
+
+> "Give me my weekly habit report."
+
+See a [sample weekly habit report](samples/SAMPLE_weekly_habit_report.md) (synthetic sample data), also on the [TapeLog site](https://tapelog-journal.github.io/tapelog/habit-report/).
 
 **Exporting your trades:** in DAS Trader, open the Trades window, right-click and choose Export. DAS files have no date, so pass `trade_date`. In Robinhood, go to Account, then Reports and statements, then Account activity report (CSV). Step-by-step guides are on the [TapeLog site](https://tapelog-journal.github.io/tapelog/guides/).
 

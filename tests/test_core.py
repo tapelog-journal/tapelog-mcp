@@ -41,3 +41,30 @@ def test_compare_and_store(tmp_path):
     assert len(core.Store(str(tmp_path / "f.json")).fills) == 120
     c = core.compare_periods(st.trips(), "2026-09-14", "2026-09-25", "2026-09-28", "2026-10-09")
     assert c["period_a"]["trades"] > 0 and "net_pnl" in c["change_b_minus_a"]
+
+from tapelog_mcp import habits
+
+def _weekly():
+    return core.build_trips(core.parse_csv(rd("SAMPLE_weekly_habit_fills.csv")))
+
+def test_weekly_habit_report_appeared_and_faded():
+    r = habits.weekly_habit_report(_weekly())
+    assert r["week_of"] == "2026-10-12" and r["prior_weeks_compared"] == 3
+    app = {i["habit"]: i for i in r["appeared"]}; fad = {i["habit"] for i in r["faded"]}
+    assert {"size_up_after_loss", "losers_held_longer"} <= set(app)
+    assert {"overtrading_burst", "time_of_day_slump"} <= fad
+    assert app["size_up_after_loss"]["this_week"] == 8 and "showed up 8 times" in app["size_up_after_loss"]["summary"]
+    assert r["disclaimer"] == DISCLAIMER
+
+def test_weekly_habit_markdown_no_advice():
+    r = habits.weekly_habit_report(_weekly())
+    md = habits.render_markdown(r)
+    assert "## Habits that appeared" in md and "## Habits that faded" in md and "Educational, not investment advice." in md
+    body = md.split("**Educational")[0].lower()
+    assert not re.search(r"\b(you should|buy|sell|price target|recommend|signal to)\b", body)
+
+def test_weekly_habit_bursts_and_empty():
+    from datetime import datetime
+    T = lambda m, pnl: core.Trip("X", "long", datetime(2026, 10, 14, 10, m), datetime(2026, 10, 14, 10, m + 1), 100, 1000, pnl, 0)
+    assert habits._bursts([T(0, 1), T(5, 1), T(10, 1), T(40, 1)]) == 1
+    e = habits.weekly_habit_report([]); assert "note" in e and "Educational" in habits.render_markdown(e)

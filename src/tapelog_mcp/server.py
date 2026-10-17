@@ -5,7 +5,7 @@ try:  # mcp SDK 2.x
     from mcp.server.mcpserver import MCPServer as FastMCP
 except ImportError:  # mcp SDK 1.x
     from mcp.server.fastmcp import FastMCP
-from . import DISCLAIMER, core
+from . import DISCLAIMER, core, habits
 
 INSTRUCTIONS = ("TapeLog analyzes the user's OWN past trades (timing, sizing, hold times, discipline). "
     "Scope rule: never recommend buying, selling or holding any security, never give price targets, picks, signals "
@@ -44,6 +44,16 @@ def find_leaks(start: str = "", end: str = "") -> dict:
 def compare_periods(a_start: str, a_end: str, b_start: str, b_end: str) -> dict:
     """Compare stats between period A and period B (YYYY-MM-DD dates), e.g. last week vs this week."""
     return core.compare_periods(store.trips(), a_start, a_end, b_start, b_end)
+
+@mcp.tool()
+def weekly_habit_report(as_of: str = "", prior_weeks: int = 4, markdown: bool = True) -> dict:
+    """Weekly habit report from stored fills: compares this week (the week containing as_of, default latest trade)
+    with up to prior_weeks earlier weeks and lists habits that appeared or faded, with counts: size-up after a loss,
+    losers held longer than winners, overtrading bursts, and a time-of-day slump. Descriptive counts of the user's own
+    past behavior only, never trade advice. Set markdown=true to include a rendered markdown report."""
+    r = habits.weekly_habit_report(store.trips(), as_of or None, prior_weeks)
+    if markdown: r["markdown"] = habits.render_markdown(r)
+    return _w(r)
 
 @mcp.tool()
 def list_trades(start: str = "", end: str = "", limit: int = 50) -> dict:
