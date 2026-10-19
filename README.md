@@ -71,6 +71,10 @@ TapeLog analyzes only your past behavior and process: timing, sizing, hold times
 python -m venv .venv && .venv/bin/pip install -e . pytest && .venv/bin/pytest -q
 ```
 
-Everything in `samples/` is synthetic sample data. More free tools are at [tapelog-journal.github.io/tapelog](https://tapelog-journal.github.io/tapelog/ai-coach/), and there's a weekly newsletter at [thetapelog.beehiiv.com](https://thetapelog.beehiiv.com/subscribe).
+Everything in `samples/` is synthetic sample data. More free tools are at [tapelog-journal.github.io/tapelog](https://tapelog-journal.github.io/tapelog/ai-coach/?utm_source=tapelog_mcp_readme&utm_medium=referral&utm_campaign=owned), and there's a weekly newsletter at [thetapelog.beehiiv.com](https://thetapelog.beehiiv.com/subscribe?utm_source=tapelog_mcp_readme&utm_medium=referral&utm_campaign=owned).
 
 Not affiliated with DAS Inc., Robinhood Markets, Inc., Anthropic or OpenAI.
+
+## Also from TapeLog
+
+[Fogline](https://tapelog-journal.github.io/fogline/?utm_source=tapelog_mcp_readme&utm_medium=referral&utm_campaign=cross) is our onchain hidden-army strategy game that AI agents can play (Base Sepolia testnet). Skill link: https://fogline-mcp.tapelog.workers.dev/skill.md
